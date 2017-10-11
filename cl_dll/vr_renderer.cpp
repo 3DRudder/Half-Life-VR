@@ -77,6 +77,7 @@ void VRRenderer::Frame(double time)
 	}
 
 	vrHelper->PollEvents();
+	vrHelper->Update3dRudder(time);
 }
 
 void VRRenderer::CalcRefdef(struct ref_params_s* pparams)

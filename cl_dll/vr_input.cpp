@@ -26,19 +26,17 @@ void VRInput::HandleButtonPress(unsigned int button, vr::VRControllerState_t con
 		{
 		case vr::EVRButtonId::k_EButton_ApplicationMenu:
 		{
-			ClientCmd("escape");
+			downOrUp ? ClientCmd("+use") : ClientCmd("-use");
 		}
 		break;
 		case vr::EVRButtonId::k_EButton_SteamVR_Trigger:
 		{
-			//downOrUp ? ClientCmd("+jump") : ClientCmd("-jump");
+			downOrUp ? ClientCmd("+jump") : ClientCmd("-jump");
 		}
 		break;
 		case vr::EVRButtonId::k_EButton_SteamVR_Touchpad:
 		{
-			ServerCmd(downOrUp?"vrtele 1":"vrtele 0");
-
-			/*
+					
 			vr::VRControllerAxis_t touchPadAxis = controllerState.rAxis[vr::EVRButtonId::k_EButton_SteamVR_Touchpad - vr::EVRButtonId::k_EButton_Axis0];
 
 			// TODO: Move in direction controller is pointing, not direction player is looking!
@@ -78,7 +76,7 @@ void VRInput::HandleButtonPress(unsigned int button, vr::VRControllerState_t con
 			{
 				ClientCmd("-back");
 			}
-			*/
+			
 		}
 		break;
 		}
@@ -104,19 +102,29 @@ void VRInput::HandleButtonPress(unsigned int button, vr::VRControllerState_t con
 		break;
 		case vr::EVRButtonId::k_EButton_SteamVR_Touchpad:
 		{
+			//ServerCmd(downOrUp ? "vrtele 1" : "vrtele 0");
 			vr::VRControllerAxis_t touchPadAxis = controllerState.rAxis[vr::EVRButtonId::k_EButton_SteamVR_Touchpad - vr::EVRButtonId::k_EButton_Axis0];
 
-			if (touchPadAxis.y > 0.5f && !downOrUp)
+			if (touchPadAxis.x < -0.5f && !downOrUp)
 			{
 				gHUD.m_Ammo.UserCmd_NextWeapon();
 				gHUD.m_iKeyBits |= IN_ATTACK;
 				gHUD.m_Ammo.Think();
 			}
-			else if (touchPadAxis.y < -0.5f && !downOrUp)
+			else if (touchPadAxis.x > 0.5f && !downOrUp)
 			{
 				gHUD.m_Ammo.UserCmd_PrevWeapon();
 				gHUD.m_iKeyBits |= IN_ATTACK;
 				gHUD.m_Ammo.Think();
+			}
+
+			if (touchPadAxis.y > 0.5f && downOrUp)
+			{
+				ServerCmd("vrtele 1");
+			}
+			else
+			{
+				ServerCmd("vrtele 0");
 			}
 		}
 		break;

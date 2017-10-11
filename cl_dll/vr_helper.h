@@ -1,6 +1,8 @@
 #pragma once
 
 #include "openvr/openvr.h"
+#define _3DRUDDER_SDK_STATIC
+#include "3dRudderSDK\Include\3dRudderSDK.h"
 
 class Positions
 {
@@ -23,6 +25,7 @@ public:
 	void Init();
 
 	void PollEvents();
+	void Update3dRudder(double time);
 	bool UpdatePositions(struct ref_params_s* pparams);
 	void SubmitImages();
 	void PrepareVRScene(vr::EVREye eEye, struct ref_params_s* pparams);
@@ -69,4 +72,7 @@ private:
 
 	unsigned int vrRenderWidth = 0;
 	unsigned int vrRenderHeight = 0;
+
+	ns3dRudder::CSdk* pSdk = nullptr;
+	float vrangle = 0;
 };
