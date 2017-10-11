@@ -11,4 +11,4 @@ You will need to set the acl of opengl32.dll to disallow file deletion. (The lat
 Use start.bat to launch the vr mod or add following code to steam game launch options:
  * hl.exe -game vr -dev -env -console -insecure -nomouse -nojoy +sv_lan 1 
  
-If you try to play Half-life multiplayer with opengl32.dll in the root directory you CAN be VAC banned.
+If you try to play Half-life multiplayer with opengl32.dll in the root directory you CAN be VAC (Valve Anti-Cheat) banned.
