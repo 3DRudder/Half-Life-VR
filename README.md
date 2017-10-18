@@ -37,6 +37,7 @@ if (pSdk != nullptr)
  ns3dRudder::EndSDK();
 pSdk = nullptr;
  ```
+* More details on [Wiki](https://github.com/3DRudder/Half-Life-VR/wiki)
 # Setup
 
 Extract the archived files into the root directory of Half-life.
