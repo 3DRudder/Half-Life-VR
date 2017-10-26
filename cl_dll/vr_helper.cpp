@@ -19,7 +19,7 @@ extern engine_studio_api_t IEngineStudio;
 const Vector3 HL_TO_VR(2.3f / 10.f, 2.2f / 10.f, 2.3f / 10.f);
 const Vector3 VR_TO_HL(1.f / HL_TO_VR.x, 1.f / HL_TO_VR.y, 1.f / HL_TO_VR.z);
 const float FLOOR_OFFSET = 10;
-
+const float DEG2RAD = 3.141593f / 180;
 
 VRHelper::VRHelper()
 {
@@ -429,7 +429,14 @@ void VRHelper::UpdateGunPosition(struct ref_params_s* pparams)
 			cl_entity_t *localPlayer = gEngfuncs.GetLocalPlayer();
 			Vector clientGroundPosition = localPlayer->curstate.origin;
 			clientGroundPosition.z += localPlayer->curstate.mins.z;
-			Vector originInHLSpace = clientGroundPosition + originInRelativeHLSpace;
+			// Transform the position of controller with the rotation of 3dRudder
+			Vector controllerFromPlayer;
+			float angle = DEG2RAD * -vrangle;
+			controllerFromPlayer.x = (originInRelativeHLSpace.x * cos(angle)) - (originInRelativeHLSpace.y * sin(angle));
+			controllerFromPlayer.y = (originInRelativeHLSpace.x * sin(angle)) + (originInRelativeHLSpace.y * cos(angle));
+			controllerFromPlayer.z = originInRelativeHLSpace.z;
+			// apply new position
+			Vector originInHLSpace = clientGroundPosition + controllerFromPlayer;
 
 			VectorCopy(originInHLSpace, viewent->origin);
 			VectorCopy(originInHLSpace, viewent->curstate.origin);
@@ -437,6 +444,8 @@ void VRHelper::UpdateGunPosition(struct ref_params_s* pparams)
 
 
 			viewent->angles = GetHLAnglesFromVRMatrix(controllerAbsoluteTrackingMatrix);
+			// apply new rotation
+			viewent->angles.y -= vrangle;
 			VectorCopy(viewent->angles, viewent->curstate.angles);
 			VectorCopy(viewent->angles, viewent->latched.prevangles);
 

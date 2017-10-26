@@ -48,3 +48,9 @@ Use start.bat to launch the vr mod or add following code to steam game launch op
  * hl.exe -game vr -dev -env -console -insecure -nomouse -nojoy +sv_lan 1 
  
 If you try to play Half-life multiplayer with opengl32.dll in the root directory you CAN be VAC (Valve Anti-Cheat) banned.
+
+You can change the speed of translation and rotation in the ```config.cfg``` in ```vr``` folder
+ * cl_backspeed "200" -> backward
+ * cl_forwardspeed "200" -> forward
+ * cl_yawspeed "100" -> rotation left/right
+ * cl_sidespeed "100" -> strafe left/right
