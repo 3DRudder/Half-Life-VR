@@ -4,7 +4,7 @@
 ![Firmware 3dRudder](https://img.shields.io/badge/Firmware%203dRudder-%3E%20v1.3.4.0-brightgreen.svg)
 
 This is source code for a VR mod for Half-Life. You may use or reuse this code with giving credit.
-
+forked from [maxvollmer/Half-Life-VR](https://github.com/maxvollmer/Half-Life-VR)
 No warranties whatsoever.
 
 # 3dRudder Integration
