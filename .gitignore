@@ -5,3 +5,6 @@ Release
 
 Build/
 x64/
+_site/
+Gemfile.lock
+.gem
