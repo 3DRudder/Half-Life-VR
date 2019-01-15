@@ -7,6 +7,8 @@ This is source code for a VR mod for Half-Life made by Max Vollmer. You may use 
 
 No warranties whatsoever.
 
+with modifications by 
+
 ![logo](3dR_Logo.png)
 
 # 3dRudder Integration
