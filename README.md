@@ -3,7 +3,7 @@
 ![Visual Studio 2015](https://img.shields.io/badge/Visual%20Studio-2015-brightgreen.svg)
 ![Firmware 3dRudder](https://img.shields.io/badge/Firmware%203dRudder-%3E%20v1.3.4.0-brightgreen.svg)
 
-This is source code for a VR mod for Half-Life. You may use or reuse this code with giving credit.
+This is source code for a VR mod for Half-Life made by Max Vollmer. You may use or reuse this code with giving credit to the original author.
 
 No warranties whatsoever.
 
